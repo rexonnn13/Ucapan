@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Selamat Ulang Tahun Ayah</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      font-family: Georgia, serif;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      flex-direction: column;
+      background-color: #fdf6e3; /* Gantikan background bendera dengan warna netral */
+    }
+
+    .container {
+      width: 600px;
+      height: 420px;
+      perspective: 2000px;
+      z-index: 2;
+    }
+
+    .book {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    .page {
+      width: 50%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      background-color: #fffaf0;
+      background-image:
+        url('https://www.transparenttextures.com/patterns/lined-paper.png'); /* Tekstur kertas bergaris */
+      background-size: cover;
+      border: 2px solid #d3bfa0;
+      box-shadow: inset 0 0 0.5em rgba(0,0,0,0.1), 4px 4px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      transition: transform 1.5s ease;
+      backface-visibility: hidden;
+    }
+
+    .left {
+      left: 0;
+      transform-origin: right;
+      animation: openLeft 2s forwards;
+    }
+
+    .right {
+      right: 0;
+      transform-origin: left;
+      animation: openRight 2s forwards;
+    }
+
+    .content {
+      max-width: 90%;
+    }
+
+    h1 {
+      font-size: 20px;
+      color: #a0522d;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.5;
+      color: #333;
+      margin: 8px 0;
+    }
+
+    @keyframes openLeft {
+      from { transform: rotateY(90deg); opacity: 0; }
+      to   { transform: rotateY(0deg); opacity: 1; }
+    }
+
+    @keyframes openRight {
+      from { transform: rotateY(-90deg); opacity: 0; }
+      to   { transform: rotateY(0deg); opacity: 1; }
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -100px;
+      width: 30px;
+      height: 40px;
+      background-color: pink;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      animation: fly 8s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes fly {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .music-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #8b4513;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      color: #fff;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 3;
+    }
+
+    .music-button:hover {
+      background-color: #5c3317;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Balon-balon -->
+  <script>
+    const colors = ['#ff69b4', '#ff1493', '#ffa07a', '#87cefa', '#98fb98', '#ffff66'];
+    for (let i = 0; i < 25; i++) {
+      const balloon = document.createElement('div');
+      balloon.className = 'balloon';
+      balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      balloon.style.left = `${Math.random() * 100}%`;
+      balloon.style.animationDuration = `${6 + Math.random() * 4}s`;
+      document.body.appendChild(balloon);
+    }
+  </script>
+
+  <div class="container">
+    <div class="book">
+      <div class="page left">
+        <div class="content">
+          <h1>Selamat Ulang Tahun, Ayah!</h1>
+          <p>Terima kasih telah menjadi sosok ayah yang kuat, bijak, dan penuh kasih.</p>
+          <p>Setiap langkah hidupku terasa lebih mudah karena bimbingan dan doa-doamu.</p>
+        </div>
+      </div>
+      <div class="page right">
+        <div class="content">
+          <p>Di hari spesial ini, aku mendoakan kesehatan, kebahagiaan, dan keberkahan untuk Ayah.</p>
+          <p>Semoga Ayah selalu diberikan umur panjang, kekuatan, dan damai dalam setiap langkah.</p>
+          <p style="margin-top: 20px;">— Anakmu</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Musik -->
+  <audio id="musik" autoplay loop>
+    <source src="lagunasional.mp3" type="audio/mpeg">
+    Browser Anda tidak mendukung pemutar audio.
+  </audio>
+
+  <button class="music-button" onclick="document.getElementById('musik').play()">🎵 Putar Musik</button>
+
+</body>
+</html>
